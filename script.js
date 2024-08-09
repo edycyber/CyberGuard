@@ -54,3 +54,6 @@ document.getElementById('logout').addEventListener('click', async function(event
     alert('Logged out successfully!');
     window.location.href = 'index.html';
 });
+
+
+
