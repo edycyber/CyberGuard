@@ -3,28 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CyberGuard - Secure Your Browser</title>
-    <link rel="stylesheet" href="styles.css">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://your-supabase-url.supabase.co; style-src 'self';">
+    <title>CyberGuard</title>
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://tmyzeggviqugrpuzkxyr.supabase.co; style-src 'self';">
 
 </head>
-<body class="landing-page">
+<body>
     <header>
-        <h1>CyberGuard</h1>
         <nav>
-            <a href="register.html">Sign Up</a>
-            <a href="login.html">Login</a>
+            <div class="logo">CyberGuard</div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="login.html">Log In</a></li>
+                <li><a href="register.html" class="cta">Get a Demo</a></li>
+            </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h2>Protect Your Browser with Advanced Cybersecurity</h2>
-        <p>CyberGuard is your all-in-one solution to ensure safe and secure browsing.</p>
-        <a href="register.html" class="cta-button">Get Started</a>
+        <div class="content">
+            <h1>The New Standard for Cybersecurity</h1>
+            <p>CyberGuard is your ultimate browser extension to protect against phishing, IP exposure, unwanted ads, and more.</p>
+            <a href="register.html" class="btn-primary">Get a Demo</a>
+            <a href="#pricing" class="btn-secondary">Discover Plans</a>
+        </div>
+        <div class="media">
+            <video autoplay muted loop>
+                <source src="video/promo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     </section>
 
+    <!-- Add more sections like About, Features, Pricing, and FAQ here -->
+
     <footer>
-        <p>&copy; 2024 CyberGuard. All rights reserved.</p>
+        <p>© 2024 CyberGuard. All rights reserved.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
+
