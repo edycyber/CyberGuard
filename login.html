@@ -6,45 +6,103 @@
     <title>CyberGuard - Login</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://tmyzeggviqugrpuzkxyr.supabase.co; style-src 'self';">
     <style>
-.container {
-  display: flex;
-  height: 100vh;
-}
-
-.image-container {
-  flex: 1;
-  background-image: url('logo.png');
-  background-size: cover;
-  background-position: center;
-}
-
-.form-container {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;   
-  padding: 20px;
-}
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            height: 100%;
+        }
+        .image-section {
+            flex: 1;
+            background-color: #00789d;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 2rem;
+        }
+        .login-section {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .login-container {
+            width: 300px;
+        }
+        .logo {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            margin-bottom: 2rem;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .forgot-password {
+            text-align: right;
+            font-size: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .signup {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+        .image-placeholder {
+            width: 80%;
+            height: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
-  <div class="container">
-    <div class="image-container">   
-      <img src="logo.png" alt="Image">
+    <div class="container">
+        <div class="image-section">
+            <div class="image-placeholder"></div>
+            <h2>"Turn any product URL into a captivating video ad instantly"</h2>
+        </div>
+        <div class="login-section">
+            <div class="login-container">
+                <div class="logo">
+                    <img src="lopo.png" alt="JOGG logo" />
+                </div>
+                <h1>Welcome to AI SECURITY 👋</h1>
+                <form>
+                    <input type="email" placeholder="Enter email" required>
+                    <input type="password" placeholder="Enter password" required>
+                    <div class="forgot-password">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                    <button type="submit">Sign in</button>
+                </form>
+                <div class="signup">
+                    Don't have an account? <a href="#">Sign up</a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-container">
-      <h2>Login</h2>
-      <form>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
-      </form>
-      <p>Don't have an account? <a href="#">Sign Up</a></p>
-    </div>
-  </div>
     <script src="script.js"></script>
 </body>
-</html>
+</html>    
