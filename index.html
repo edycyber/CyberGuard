@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Guardian - Cybersecurity While Browsing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-image {
+            width: 40px;
+            height: 40px;
+            background-color: #4ecca3; /* Placeholder color */
+            margin-right: 10px;
+        }
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4ecca3;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #4ecca3; /* Restored original color */
+            color: #1a1a2e;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #45b393; /* Slightly darker shade for hover effect */
+        }
+        .features {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+        .feature {
+            flex-basis: 30%;
+            text-align: center;
+        }
+        .video-section {
+            margin-top: 50px;
+            text-align: center;
+        }
+        .video-placeholder {
+            background-color: #2c2c3e;
+            height: 315px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .pricing {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
+            padding: 50px 0;
+        }
+        .price-card {
+            background-color: #2c2c3e;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            width: 30%;
+        }
+        .price {
+            font-size: 36px;
+            margin: 20px 0;
+        }
+        footer {
+            background-color: #2c2c3e;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-section {
+            flex-basis: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-image"></div>
+                <div class="logo-text">AI Guardian</div>
+            </div>
+            <nav>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+                <a href="#" class="cta-button">Get Demo</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>AI-Powered Cybersecurity for Safer Browsing</h1>
+            <p>AI Guardian uses advanced artificial intelligence to protect you from online threats in real-time.</p>
+            <a href="#" class="cta-button">Start Free Trial</a>
+        </section>
+
+        <section class="features" id="features">
+            <div class="feature">
+                <h2>Real-time Threat Detection</h2>
+                <p>Our AI constantly analyzes your browsing activity to identify and block potential threats.</p>
+            </div>
+            <div class="feature">
+                <h2>Phishing Protection</h2>
+                <p>Advanced algorithms detect and warn you about suspicious websites and phishing attempts.</p>
+            </div>
+            <div class="feature">
+                <h2>Privacy Shield</h2>
+                <p>Protect your personal information with our AI-driven privacy safeguards.</p>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <h2>See AI Guardian in Action</h2>
+            <div class="video-placeholder">
+                [Video Player Placeholder]
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+            <div class="price-card">
+                <h3>Basic</h3>
+                <div class="price">$9.99/mo</div>
+                <ul>
+                    <li>Real-time Threat Detection</li>
+                    <li>Basic Phishing Protection</li>
+                    <li>24/7 Support</li>
+                </ul>
+                <a href="#" class="cta-button">Choose Plan</a>
+            </div>
+            <div class="price-card">
+                <h3>Pro</h3>
+                <div class="price">$19.99/mo</div>
+                <ul>
+                    <li>Advanced Threat Detection</li>
+                    <li>Enhanced Phishing Protection</li>
+                    <li>Privacy Shield</li>
+                    <li>Priority 24/7 Support</li>
+                </ul>
+                <a href="#" class="cta-button">Choose Plan</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>About AI Guardian</h3>
+                <p>We're committed to making the internet a safer place with cutting-edge AI technology.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@aiguardian.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
