@@ -6,7 +6,7 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 // Register User
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault();
-
+    console.log("Form Submitted");  // Debugging line
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
