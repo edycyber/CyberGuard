@@ -71,7 +71,7 @@ async function insertData(newData) {
 // Listen for changes in your table
 supabase
 .channel('public:users')
-.on('postgres_changes', { event: '*', schema: 'public', table: 'your-table-name' }, payload => {
+.on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, payload => {
   console.log('Change received!', payload);
 })
 .subscribe();
