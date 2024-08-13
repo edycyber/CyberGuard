@@ -6,28 +6,33 @@ const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 // Register User
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault();
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const redeemCode = document.getElementById('redeemCode').value;
 
-    const { user, error } = await supabase.auth.signUp({
-        email: email,
-        password: password
-    }, {
-        data: {
-            name: name,
-            redeem_code: redeemCode
-        }
-    });
+    try {
+        const { user, error } = await supabase.auth.signUp({
+            email: email,
+            password: password
+        }, {
+            data: {
+                name: name,
+                redeem_code: redeemCode
+            }
+        });
 
-    if (error) {
-        alert('Registration failed: ' + error.message);
-    } else {
-        alert('Registration successful!');
+        if (error) throw error;
+
+        alert('Registration successful! Redirecting to dashboard...');
         window.location.href = 'dashboard.html';
+    } catch (error) {
+        console.error('Error during registration:', error.message);
+        alert('Registration failed: ' + error.message);
     }
 });
+
 
 // Login User
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
