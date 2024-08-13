@@ -80,7 +80,7 @@ function submitForm(event) {
 
 // Listen for changes in your table
 supabase
-.channel('users')
+.channel('public:users')
 .on('postgres_changes', { event: '*', schema: 'public', table: 'your-table-name' }, payload => {
   console.log('Change received!', payload);
 })
