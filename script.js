@@ -55,5 +55,26 @@ document.getElementById('logout').addEventListener('click', async function(event
     window.location.href = 'index.html';
 });
 
+// Function to insert data into Supabase
+async function insertData(newData) {
+    const { data, error } = await supabase
+        .from('users')
+        .insert([newData]);
 
+    if (error) {
+        console.error('Error inserting data:', error);
+    } else {
+        console.log('Data inserted:', data);
+    }
+}
+
+// Example usage: Form submission
+function submitForm(event) {
+    event.preventDefault();
+    const input1 = document.getElementById('input1').value;
+    const input2 = document.getElementById('input2').value;
+
+    const newData = { column1: input1, column2: input2 };
+    insertData(newData);
+}
 
