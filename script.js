@@ -68,16 +68,6 @@ async function insertData(newData) {
     }
 }
 
-// Example usage: Form submission
-function submitForm(event) {
-    event.preventDefault();
-    const input1 = document.getElementById('input1').value;
-    const input2 = document.getElementById('input2').value;
-
-    const newData = { column1: input1, column2: input2 };
-    insertData(newData);
-}
-
 // Listen for changes in your table
 supabase
 .channel('public:users')
