@@ -11,7 +11,8 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const redeemCode = document.getElementById('redeemCode').value;
-
+    console.log({ name, email, password, redeemCode });  // Debugging line
+    // Continue with registration logic...
     try {
         const { user, error } = await supabase.auth.signUp({
             email: email,
