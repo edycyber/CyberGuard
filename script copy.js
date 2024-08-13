@@ -33,3 +33,50 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     }
 });
 
+
+// Login User
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    const { user, error } = await supabase.auth.signIn({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        alert('Login failed: ' + error.message);
+    } else {
+        alert('Login successful!');
+        window.location.href = 'dashboard.html';
+    }
+});
+
+// Logout User
+document.getElementById('logout').addEventListener('click', async function(event) {
+    await supabase.auth.signOut();
+    alert('Logged out successfully!');
+    window.location.href = 'index.html';
+});
+
+// Function to insert data into Supabase
+async function insertData(newData) {
+    const { data, error } = await supabase
+        .from('users')
+        .insert([newData]);
+
+    if (error) {
+        console.error('Error inserting data:', error);
+    } else {
+        console.log('Data inserted:', data);
+    }
+}
+
+// Listen for changes in your table
+supabase
+.channel('public:users')
+.on('postgres_changes', { event: '*', schema: 'public', table: 'users' }, payload => {
+  console.log('Change received!', payload);
+})
+.subscribe();
