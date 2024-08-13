@@ -78,3 +78,10 @@ function submitForm(event) {
     insertData(newData);
 }
 
+// Listen for changes in your table
+supabase
+.channel('users')
+.on('postgres_changes', { event: '*', schema: 'public', table: 'your-table-name' }, payload => {
+  console.log('Change received!', payload);
+})
+.subscribe();
