@@ -2,7 +2,6 @@
 const supabaseUrl = 'https://tmyzeggviqugrpuzkxyr.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRteXplZ2d2aXF1Z3JwdXpreHlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyMTkxMDIsImV4cCI6MjAzODc5NTEwMn0.qk6XTURGRBMciirwCwYC_bEjF2MVWcm5aOFnDcwAkuY';
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
 // Register User
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault();
