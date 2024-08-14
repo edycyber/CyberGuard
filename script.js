@@ -4,14 +4,13 @@ const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 // Register User
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    console.log("Form Submitted");  // Debugging line
+    event.preventDefault(); // Prevents form from submitting traditionally
+
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const redeemCode = document.getElementById('redeemCode').value;
-    console.log({ name, email, password, redeemCode });  // Debugging line
-    // Continue with registration logic...
+
     try {
         const { user, error } = await supabase.auth.signUp({
             email: email,
@@ -30,6 +29,28 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     } catch (error) {
         console.error('Error during registration:', error.message);
         alert('Registration failed: ' + error.message);
+    }
+});
+//login users
+document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const { user, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
+        if (error) throw error;
+
+        alert('Login successful! Redirecting to dashboard...');
+        window.location.href = 'dashboard.html';
+    } catch (error) {
+        console.error('Error during login:', error.message);
+        alert('Login failed: ' + error.message);
     }
 });
 
