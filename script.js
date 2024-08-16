@@ -2,6 +2,7 @@
 const supabaseUrl = 'https://tmyzeggviqugrpuzkxyr.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRteXplZ2d2aXF1Z3JwdXpreHlyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyMTkxMDIsImV4cCI6MjAzODc5NTEwMn0.qk6XTURGRBMciirwCwYC_bEjF2MVWcm5aOFnDcwAkuY';
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
 // Register User
 document.getElementById('registerForm').addEventListener('submit', async function(event) {
     event.preventDefault(); // Prevents form from submitting traditionally
@@ -12,13 +13,14 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     const redeemCode = document.getElementById('redeemCode').value;
 
     try {
-        const { user, error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
             email: email,
-            password: password
-        }, {
-            data: {
-                name: name,
-                redeem_code: redeemCode
+            password: password,
+            options: {
+                data: {
+                    name: name,
+                    redeem_code: redeemCode
+                }
             }
         });
 
@@ -31,7 +33,8 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         alert('Registration failed: ' + error.message);
     }
 });
-//login users
+
+// Login User
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
@@ -39,7 +42,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const password = document.getElementById('password').value;
 
     try {
-        const { user, error } = await supabase.auth.signInWithPassword({
+        const { data, error } = await supabase.auth.signInWithPassword({
             email: email,
             password: password
         });
@@ -53,4 +56,3 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         alert('Login failed: ' + error.message);
     }
 });
-
