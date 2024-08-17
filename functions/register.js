@@ -6,13 +6,6 @@ const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 exports.handler = async function(event, context) {
-    if (event.httpMethod !== 'POST') {
-        return {
-            statusCode: 405,
-            body: 'Method Not Allowed',
-        };
-    }
-
     const { email, password, name, redeemCode } = JSON.parse(event.body);
 
     try {
@@ -40,3 +33,4 @@ exports.handler = async function(event, context) {
         };
     }
 };
+
