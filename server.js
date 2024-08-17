@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Define a route for the root path
 app.get('/', (req, res) => {
-    res.send('Welcome to the Supabase Proxy Server!');
+    res.send('Welcome to the Home Page!');
 });
 
 // Example POST route for registration
@@ -38,17 +38,6 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
-
-// Home page route
-app.get('/', (req, res) => {
-    res.send('Welcome to the Home Page!');
-});
-
 // Dashboard route
 app.get('/dashboard', (req, res) => {
     res.send('This is the Dashboard!');
@@ -58,4 +47,11 @@ app.get('/dashboard', (req, res) => {
 app.get('/about', (req, res) => {
     res.send('About Us: This page contains information about our application.');
 });
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
 
