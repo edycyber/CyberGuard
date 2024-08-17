@@ -5,3 +5,10 @@
     "express": "^4.19.2"
   }
 }
+
+{
+  "scripts": {
+    "build": "npm run build",
+    "start": "netlify dev"
+  }
+}
