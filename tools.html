@@ -1,0 +1,537 @@
+<html><head><base href="https://adblockerpro.example.com/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdBlocker Pro with Cybersecurity Recommendations and Malware Scanner</title>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #f5f5f5;
+            --text-color: #333;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        h1, h2 {
+            margin: 0;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .toggle {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--success-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        #status {
+            text-align: center;
+            margin-top: 2rem;
+            font-weight: bold;
+        }
+
+        #whitelist {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3a7bc8;
+        }
+
+        #recommendationsContainer, #malwareScannerContainer {
+            margin-top: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendation {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        .recommendation h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .recommendation p {
+            margin-bottom: 0;
+        }
+
+        .high-risk {
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .medium-risk {
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .low-risk {
+            border-left: 4px solid var(--success-color);
+        }
+
+        #scanStatus {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        #scanResults {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: var(--secondary-color);
+        }
+
+        .scan-result {
+            margin-bottom: 0.5rem;
+        }
+
+        .scan-result.clean {
+            color: var(--success-color);
+        }
+
+        .scan-result.infected {
+            color: var(--danger-color);
+        }
+
+        #scanProgress {
+            width: 100%;
+            height: 20px;
+            margin-top: 1rem;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        #scanProgressBar {
+            width: 0%;
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AdBlocker Pro with Cybersecurity Recommendations and Malware Scanner</h1>
+    </header>
+    <div class="container">
+        <div class="toggle-container">
+            <span>Block Ads</span>
+            <label class="toggle">
+                <input type="checkbox" id="adBlockToggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="toggle-container">
+            <span>Block Cookies</span>
+            <label class="toggle">
+                <input type="checkbox" id="cookieBlockToggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="toggle-container">
+            <span>Block Tracking</span>
+            <label class="toggle">
+                <input type="checkbox" id="trackingBlockToggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div id="status">All protections are active</div>
+        <textarea id="whitelist" rows="4" placeholder="Enter websites to whitelist (one per line)"></textarea>
+        <button id="saveWhitelist">Save Whitelist</button>
+
+        <div id="recommendationsContainer">
+            <h2>Cybersecurity Recommendations</h2>
+            <div id="recommendations"></div>
+        </div>
+
+        <div id="malwareScannerContainer">
+            <h2>Real-Time Malware Scanner</h2>
+            <button id="startScan">Start Scan</button>
+            <div id="scanProgress">
+                <div id="scanProgressBar"></div>
+            </div>
+            <div id="scanStatus"></div>
+            <div id="scanResults"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const adBlockToggle = document.getElementById('adBlockToggle');
+            const cookieBlockToggle = document.getElementById('cookieBlockToggle');
+            const trackingBlockToggle = document.getElementById('trackingBlockToggle');
+            const status = document.getElementById('status');
+            const whitelist = document.getElementById('whitelist');
+            const saveWhitelistButton = document.getElementById('saveWhitelist');
+            const recommendationsContainer = document.getElementById('recommendations');
+            const startScanButton = document.getElementById('startScan');
+            const scanStatus = document.getElementById('scanStatus');
+            const scanResults = document.getElementById('scanResults');
+            const scanProgressBar = document.getElementById('scanProgressBar');
+
+            // Function to update the status message
+            function updateStatus() {
+                const adBlocking = adBlockToggle.checked;
+                const cookieBlocking = cookieBlockToggle.checked;
+                const trackingBlocking = trackingBlockToggle.checked;
+
+                if (adBlocking && cookieBlocking && trackingBlocking) {
+                    status.textContent = 'All protections are active';
+                    status.style.color = 'var(--success-color)';
+                } else if (!adBlocking && !cookieBlocking && !trackingBlocking) {
+                    status.textContent = 'All protections are disabled';
+                    status.style.color = 'var(--danger-color)';
+                } else {
+                    status.textContent = 'Some protections are active';
+                    status.style.color = 'var(--primary-color)';
+                }
+            }
+
+            // Function to save settings
+            function saveSettings() {
+                localStorage.setItem('adBlocking', adBlockToggle.checked);
+                localStorage.setItem('cookieBlocking', cookieBlockToggle.checked);
+                localStorage.setItem('trackingBlocking', trackingBlockToggle.checked);
+                updateStatus();
+            }
+
+            // Function to load settings
+            function loadSettings() {
+                adBlockToggle.checked = localStorage.getItem('adBlocking') === 'true';
+                cookieBlockToggle.checked = localStorage.getItem('cookieBlocking') === 'true';
+                trackingBlockToggle.checked = localStorage.getItem('trackingBlocking') === 'true';
+                whitelist.value = localStorage.getItem('whitelist') || '';
+                updateStatus();
+            }
+
+            // Event listeners for toggles
+            adBlockToggle.addEventListener('change', saveSettings);
+            cookieBlockToggle.addEventListener('change', saveSettings);
+            trackingBlockToggle.addEventListener('change', saveSettings);
+
+            // Event listener for saving whitelist
+            saveWhitelistButton.addEventListener('click', () => {
+                localStorage.setItem('whitelist', whitelist.value);
+                alert('Whitelist saved successfully!');
+            });
+
+            // Load settings when the page loads
+            loadSettings();
+
+            // Function to check if a URL is whitelisted
+            function isWhitelisted(url, whitelist) {
+                return whitelist.some(domain => url.includes(domain));
+            }
+
+            // Function to block ads, cookies, and tracking
+            function applyBlockers() {
+                const adBlocking = localStorage.getItem('adBlocking') === 'true';
+                const cookieBlocking = localStorage.getItem('cookieBlocking') === 'true';
+                const trackingBlocking = localStorage.getItem('trackingBlocking') === 'true';
+                const whitelistValue = localStorage.getItem('whitelist') || '';
+                const whitelist = whitelistValue.split('\n').map(s => s.trim());
+
+                if (!isWhitelisted(window.location.hostname, whitelist)) {
+                    if (adBlocking) {
+                        // Block ads
+                        const adElements = document.querySelectorAll('ins.adsbygoogle, [id^="google_ads_"], .ad, .ads, .adsbygoogle');
+                        adElements.forEach(el => el.style.display = 'none');
+                    }
+
+                    if (cookieBlocking) {
+                        // Block cookies
+                        document.cookie = '';
+                        Object.defineProperty(document, 'cookie', {
+                            get: function() { return ''; },
+                            set: function() { return true; }
+                        });
+                    }
+
+                    if (trackingBlocking) {
+                        // Block common tracking scripts
+                        const trackingScripts = [
+                            'google-analytics.com',
+                            'googletagmanager.com',
+                            'facebook.net',
+                            'twitter.com/widgets.js',
+                            'connect.facebook.net'
+                        ];
+
+                        const scripts = document.getElementsByTagName('script');
+                        for (let i = 0; i < scripts.length; i++) {
+                            if (trackingScripts.some(tracker => scripts[i].src.includes(tracker))) {
+                                scripts[i].parentNode.removeChild(scripts[i]);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Apply blockers when the page loads
+            window.addEventListener('load', applyBlockers);
+
+            // Simulate blocking tracking requests
+            const originalFetch = window.fetch;
+            window.fetch = function(...args) {
+                const trackingBlocking = localStorage.getItem('trackingBlocking') === 'true';
+                const whitelistValue = localStorage.getItem('whitelist') || '';
+                const whitelist = whitelistValue.split('\n').map(s => s.trim());
+
+                if (trackingBlocking && !isWhitelisted(args[0], whitelist)) {
+                    const trackingDomains = [
+                        'google-analytics.com',
+                        'googletagmanager.com',
+                        'facebook.net',
+                        'facebook.com/tr/',
+                        'doubleclick.net'
+                    ];
+                    if (trackingDomains.some(domain => args[0].includes(domain))) {
+                        console.log('Blocked tracking request:', args[0]);
+                        return Promise.reject(new Error('Tracking request blocked'));
+                    }
+                }
+                return originalFetch.apply(this, args);
+            };
+
+            // Function to generate cybersecurity recommendations
+            function generateRecommendations(url) {
+                const recommendations = [];
+
+                // Check for HTTPS
+                if (!url.startsWith('https://')) {
+                    recommendations.push({
+                        title: 'Insecure Connection',
+                        description: 'This website is not using HTTPS. Your connection may not be secure.',
+                        risk: 'high'
+                    });
+                }
+
+                // Check for potential phishing domains
+                const suspiciousDomains = ['paypal-secure', 'amazon-account', 'google-login'];
+                if (suspiciousDomains.some(domain => url.includes(domain))) {
+                    recommendations.push({
+                        title: 'Potential Phishing Attempt',
+                        description: 'This website may be attempting to impersonate a legitimate service. Verify the URL carefully.',
+                        risk: 'high'
+                    });
+                }
+
+                // Check for social media
+                const socialMediaSites = ['facebook.com', 'twitter.com', 'instagram.com', 'linkedin.com'];
+                if (socialMediaSites.some(site => url.includes(site))) {
+                    recommendations.push({
+                        title: 'Social Media Privacy',
+                        description: 'Be cautious about the information you share on social media platforms.',
+                        risk: 'medium'
+                    });
+                }
+
+                // Check for e-commerce sites
+                const ecommerceSites = ['amazon.com', 'ebay.com', 'etsy.com'];
+                if (ecommerceSites.some(site => url.includes(site))) {
+                    recommendations.push({
+                        title: 'Online Shopping Security',
+                        description: 'Ensure you\'re using a secure payment method and be wary of deals that seem too good to be true.',
+                        risk: 'medium'
+                    });
+                }
+
+                // General recommendations
+                recommendations.push({
+                    title: 'Regular Password Updates',
+                    description: 'Remember to update your passwords regularly and use unique passwords for each account.',
+                    risk: 'low'
+                });
+
+                recommendations.push({
+                    title: 'Keep Software Updated',
+                    description: 'Ensure your browser and operating system are up to date to protect against known vulnerabilities.',
+                    risk: 'low'
+                });
+
+                return recommendations;
+            }
+
+            // Function to display recommendations
+            function displayRecommendations(recommendations) {
+                recommendationsContainer.innerHTML = '';
+                recommendations.forEach(rec => {
+                    const recElement = document.createElement('div');
+                    recElement.className = `recommendation ${rec.risk}-risk`;
+                    recElement.innerHTML = `
+                        <h3>${rec.title}</h3>
+                        <p>${rec.description}</p>
+                    `;
+                    recommendationsContainer.appendChild(recElement);
+                });
+            }
+
+            // Function to update recommendations based on current URL
+            function updateRecommendations() {
+                const currentUrl = window.location.href;
+                const recommendations = generateRecommendations(currentUrl);
+                displayRecommendations(recommendations);
+            }
+
+            // Update recommendations when the page loads
+            updateRecommendations();
+
+            // Update recommendations when the URL changes (for single-page applications)
+            window.addEventListener('popstate', updateRecommendations);
+
+            // Periodically check for URL changes (every 5 seconds)
+            setInterval(updateRecommendations, 5000);
+
+            // Malware scanner functionality
+            const malwareSignatures = {
+                'badscript': '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', // SHA-256 hash of "password"
+                'malware.exe': '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', // SHA-256 hash of "123456"
+                'trojan': 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f'  // SHA-256 hash of "12345678"
+            };
+
+            async function scanFile(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = async (event) => {
+                        const content = event.target.result;
+                        const hash = CryptoJS.SHA256(content).toString();
+                        
+                        for (const [malwareName, malwareHash] of Object.entries(malwareSignatures)) {
+                            if (hash === malwareHash) {
+                                resolve({ infected: true, malwareName });
+                                return;
+                            }
+                        }
+                        resolve({ infected: false });
+                    };
+                    reader.onerror = (error) => reject(error);
+                    reader.readAsText(file);
+                });
+            }
+
+            async function performMalwareScan() {
+                scanStatus.textContent = 'Scanning...';
+                scanResults.innerHTML = '';
+                scanProgressBar.style.width = '0%';
+
+                const files = await window.showDirectoryPicker().then(dir => dir.values());
+                const totalFiles = await files.length;
+                let scannedFiles = 0;
+
+                for await (const entry of files) {
+                    if (entry.kind === 'file') {
+                        const file = await entry.getFile();
+                        const result = await scanFile(file);
+                        
+                        const resultElement = document.createElement('div');
+                        resultElement.className = `scan-result ${result.infected ? 'infected' : 'clean'}`;
+                        resultElement.textContent = result.infected
+                            ? `${file.name}: Infected (${result.malwareName})`
+                            : `${file.name}: Clean`;
+                        scanResults.appendChild(resultElement);
+
+                        scannedFiles++;
+                        scanProgressBar.style.width = `${(scannedFiles / totalFiles) * 100}%`;
+                    }
+                }
+
+                scanStatus.textContent = 'Scan complete';
+                scanProgressBar.style.width = '100%';
+            }
+
+            startScanButton.addEventListener('click', performMalwareScan);
+        });
+    </script>
+</body>
+</html>
