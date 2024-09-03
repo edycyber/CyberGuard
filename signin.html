@@ -75,14 +75,14 @@
                         .insert([{ email: email, code: code }]);
 
                     if (error) {
-                        console.error('Error inserting data:', error);
-                        alert('There was an error submitting your data. Please try again.');
+                        console.error('Supabase Error:', error.message, error.details, error.hint);
+                        alert('There was an error submitting your data. Please check the console for details.');
                     } else {
                         console.log('Data inserted successfully:', data);
                         window.location.href = 'https://edycyber.github.io/landingcreator/create.html';
                     }
                 } catch (err) {
-                    console.error('Unexpected error:', err);
+                    console.error('Unexpected error:', err.message);
                     alert('An unexpected error occurred. Please try again.');
                 }
             } else {
