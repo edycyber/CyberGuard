@@ -51,13 +51,12 @@
         <button onclick="validateAndSubmit()">Submit</button>
     </div>
 
-    <script type="module">
-        import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
-
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+    <script>
         const supabaseUrl = 'https://ubpwzxtrtqoavhahhsun.supabase.co';
         const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVicHd6eHRydHFvYXZoYWhoc3VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNjIyNTQsImV4cCI6MjAzOTczODI1NH0.UF1JJz3MIhWnlsNHvLws7TUL7a1SJ6sCvWIOe3-DOOc';
 
-        const supabase = createClient(supabaseUrl, supabaseAnonKey);
+        const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
         async function validateAndSubmit() {
             const email = document.getElementById('email').value;
