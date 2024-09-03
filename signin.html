@@ -57,7 +57,7 @@
     
     <script>
         const supabaseUrl = 'https://ubpwzxtrtqoavhahhsun.supabase.co';
-        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVicHd6eHRydHFvYXZoYWhoc3VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNjIyNTQsImV4cCI6MjAzOTczODI1NH0.UF1JJz3MIhWnlsNHvLws7TUL7a1SJ6sCvWIOe3-DOOc';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInVicHd6eHRydHFvYXZoYWhoc3VuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQxNjIyNTQsImV4cCI6MjAzOTczODI1NH0.UF1JJz3MIhWnlsNHvLws7TUL7a1SJ6sCvWIOe3-DOOc';
 
         const supabase = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
@@ -68,15 +68,22 @@
             const validCodes = ['AI1532', 'AI1234', 'AI9876'];
 
             if (validCodes.includes(code)) {
-                // Insert data into Supabase
-                const { error } = await supabase
-                    .from('code')
-                    .insert([{ email: email, code: code }]);
+                try {
+                    // Insert data into Supabase
+                    const { data, error } = await supabase
+                        .from('code')
+                        .insert([{ email: email, code: code }]);
 
-                if (error) {
-                    console.error('Error inserting data:', error);
-                } else {
-                    window.location.href = 'https://edycyber.github.io/landingcreator/create.html';
+                    if (error) {
+                        console.error('Error inserting data:', error);
+                        alert('There was an error submitting your data. Please try again.');
+                    } else {
+                        console.log('Data inserted successfully:', data);
+                        window.location.href = 'https://edycyber.github.io/landingcreator/create.html';
+                    }
+                } catch (err) {
+                    console.error('Unexpected error:', err);
+                    alert('An unexpected error occurred. Please try again.');
                 }
             } else {
                 window.location.href = 'https://foodiverse0.gumroad.com/l/ppu';
