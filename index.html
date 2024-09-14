@@ -139,66 +139,75 @@
         </section>
 
         
+
 <style>
-  .email-capture {
-    display: flex;
-    max-width: 400px;
-    margin: 20px auto;
-  }
-  .email-input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-  }
-  .waitlist-button {
-    background-color: #fff;
-    color: #000;
-    border: 1px solid #000;
-    border-left: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border-radius: 0 4px 4px 0;
-  }
-  .waitlist-button svg {
-    margin-right: 5px;
-  }
+    .email-capture {
+        display: flex;
+        align-items: center;
+        max-width: 400px;
+        margin: 20px auto;
+    }
+    .email-input {
+        flex-grow: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-right: 10px;
+    }
+    .waitlist-btn {
+        background-color: white;
+        color: black;
+        border: 1px solid black;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+    }
+    .waitlist-btn svg {
+        margin-right: 5px;
+    }
 </style>
 
-<form id="emailCaptureForm" class="email-capture">
-  <input type="email" name="email" class="email-input" placeholder="Enter your email" required>
-  <button type="submit" class="waitlist-button">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-      <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
-    </svg>
-    Waitlist
-  </button>
-</form>
+<div class="email-capture">
+    <input type="email" class="email-input" placeholder="Enter your email">
+    <button class="waitlist-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.708 2.825L15 11.105V5.383zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741zM1 11.105l4.708-2.897L1 5.383v5.722z"/>
+        </svg>
+        Waitlist
+    </button>
+</div>
 
 <script>
-document.getElementById('emailCaptureForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const email = this.email.value;
-  const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScSof5zpPCB5Ap1vMXnGx5-mWH158pVB8DKmzHHYyVTekz3Ww/viewform?usp=sf_link';
-  const formId = formUrl.match(/\/e\/([\w-]+)/)[1];
-  const formData = new FormData();
-  formData.append('entry.hEwuajHA0W0aI-k0gr34XARs', email); // Replace with your actual form field ID
-
-  fetch(`https://docs.google.com/forms/d/e/${formId}/formResponse`, {
-    method: 'POST',
-    mode: 'no-cors',
-    body: formData
-  }).then(() => {
-    alert('Thank you for sending us your email.');
-    this.reset();
-  }).catch(error => {
-    console.error('Error:', error);
-    alert('An error occurred. Please try again.');
-  });
+document.querySelector('.waitlist-btn').addEventListener('click', function() {
+    const email = document.querySelector('.email-input').value;
+    if (!email) {
+        alert('Please enter a valid email address');
+        return;
+    }
+    
+    const sheetsUrl = 'https://docs.google.com/spreadsheets/d/1WhkhBgOw8l0y0FudEdhjmQ88r7gqzCk0674aYcWyIew/edit?usp=sharing';
+    
+    fetch(sheetsUrl, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'email=' + encodeURIComponent(email)
+    }).then(() => {
+        alert('Thank you for sending us your email.');
+        document.querySelector('.email-input').value = '';
+    }).catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
+    });
 });
 </script>
+
 
         <section class="features" id="features">
             <div class="feature">
