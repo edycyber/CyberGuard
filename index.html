@@ -184,7 +184,7 @@ document.getElementById('emailCaptureForm').addEventListener('submit', function(
   const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLScSof5zpPCB5Ap1vMXnGx5-mWH158pVB8DKmzHHYyVTekz3Ww/viewform?usp=sf_link';
   const formId = formUrl.match(/\/e\/([\w-]+)/)[1];
   const formData = new FormData();
-  formData.append('entry.1FAIpQLScSof5zpPCB5Ap1vMXnGx5', email); // Replace with your actual form field ID
+  formData.append('entry.1661Gx8fxuxdNkIBNko', email); // Replace with your actual form field ID
 
   fetch(`https://docs.google.com/forms/d/e/${formId}/formResponse`, {
     method: 'POST',
